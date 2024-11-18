@@ -1,0 +1,33 @@
+					README TEMA 1 RL
+						SWITCH
+											
+	Voi prezenta in urmatoarele randuri ideea folosita in spatele implementarii.
+	Am realizat cerintele 1 si 2.
+	Pentru a retine tabela MAC a switch-ului am folosit un dictionar si de
+asemenea pentru a retine fisierele de configurare ale fiecarui switch. Pentru
+fisierul de configurare am folosit  ca si cheie interfata iar ca valoare id-ul 
+vlan-ului de care apartine. La dictionarul de adrese MAC am stocat ca si cheie 
+adresa MAC a sursei de la care am primit pachetul pe care care am asociat-o cu 
+interfata pe care am primit.
+	Voi incepe prin a identifica vlan-ul pe care mi a sosit pachetul si implicit
+interfata. Dupa aceasta voi imparti implementarea in doua cazuri. Daca adresa de
+destinatie este o adresa de tip unicast sau multicast. In cazul incare am unicast
+voi imparti de asemenea in 2 subcazuri: daca am destinatia in tabela MAC sau nu.
+Daca am destinatia in tabela MAC si vine de pe port Trunk il voi trimite pe interfata
+extrasa din dictionar fiind atent sa scot tagul de vlan in caz ca voi trimite
+un pachet unui host. Daca primesc de pe port Access de asemenea voi trimite la interfata
+din tabelam MAC si voi fi atent sa adaug tag ul de vlan daca pachetul va pleca pe
+o legatura de tip Trunk.
+	Daca nu am in tabela MAC, primind pe port Trunk voi face multicast pe 
+toate interfetele, pe legaturile Access voi eliminta tag ul specific iar pe porturile
+Trunk voi redirectiona pachetul nemodificat. Primind pe port Access voi realiza
+aceeasi operatiune de multicast adaugand tag ul specific cand pachetul va pleca pe
+o interfata de tip Trunk.
+	Daca se intra pe cazul multicast(pachetul are adresa de destinatie de broadcast) voi 
+imparti pe 2 cazuri in functie de interfata pe care primesc. In ambele cazuri voi 
+parcurge dictionarul ce continea configurarea switch-ului si voi trimite pe toate
+interfetele fiind atent cu tag-ul ce contine vlan-ul. De exemplu daca primesc pe un 
+port Access voi redirectiona pe toate port-urile Trunk adaugand tag-ul aferent
+vlan-ului si ,de asemenea, voi redirectiona pachetul nemodificat pe toate porturile
+Access.
+	Va multumesc! 
